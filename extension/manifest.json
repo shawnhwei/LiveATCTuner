@@ -1,0 +1,60 @@
+{
+  "name": "Live ATC Tuner",
+  "description": "Automatically open Live ATC stream for your X-Plane COM1 frequency",
+  "homepage_url": "https://github.com/llagerlof/fresh-chrome-extension",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{362b41a0-f56e-4d6f-829a-fdf66f2f8adc}"
+    }
+  },
+  "action": {
+    "default_icon": {
+      "128": "radio-off.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_idle",
+      "js": [
+        "search.js"
+      ],
+      "matches": [
+        "https://www.liveatc.net/search/*"
+      ]
+    },
+    {
+      "run_at": "document_idle",
+      "js": [
+        "player.js"
+      ],
+      "matches": [
+        "https://www.liveatc.net/hlisten.php*"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "airports.csv",
+        "airport-frequencies.csv"
+      ],
+      "matches": []
+    }
+  ],
+  "permissions": [
+    "alarms",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.liveatc.net/*"
+  ]
+}

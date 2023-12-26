@@ -1,0 +1,1 @@
+document.querySelector('#player2_html5').play()
